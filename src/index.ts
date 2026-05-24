@@ -1,8 +1,8 @@
-import { defineExtension } from 'reactive-vscode'
-import { window } from 'vscode'
+import { defineExtension, useCommand } from 'reactive-vscode'
+import { copyReference } from './command'
 
 const { activate, deactivate } = defineExtension(() => {
-  window.showInformationMessage('Hello')
+  useCommand('ccCodeRef.copyReference', copyReference)
 })
 
 export { activate, deactivate }

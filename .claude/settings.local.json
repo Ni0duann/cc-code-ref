@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm update *)",
+      "Bash(npx vscode-ext-gen *)",
+      "Bash(pnpm build *)",
+      "Bash(pnpm typecheck *)",
+      "Bash(pnpm lint *)",
+      "Bash(npx @resvg/resvg-js-cli \"c:/Users/Ni0daunn/Desktop/work/cc-code-ref/res/icon.svg\" \"c:/Users/Ni0daunn/Desktop/work/cc-code-ref/res/icon.png\")"
+    ]
+  }
+}

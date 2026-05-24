@@ -1,24 +1,20 @@
 {
-  "publisher": "antfu",
-  "name": "ext-name",
-  "displayName": "ext-name",
+  "publisher": "YOUR_PUBLISHER",
+  "name": "cc-code-ref",
+  "displayName": "cc-code-ref",
   "version": "0.0.0",
   "private": true,
   "packageManager": "pnpm@10.27.0",
-  "description": "",
-  "author": "Anthony Fu <anthonyfu117@hotmail.com>",
+  "description": "Copy code references to clipboard for Claude Code in token-efficient format",
+  "author": "Ni0daunn",
   "license": "MIT",
-  "funding": "https://github.com/sponsors/antfu",
-  "homepage": "https://github.com/antfu/ext-name#readme",
+  "homepage": "https://github.com/Ni0duann/cc-code-ref",
   "repository": {
     "type": "git",
-    "url": "https://github.com/antfu/ext-name"
+    "url": "https://github.com/Ni0duann/cc-code-ref"
   },
   "bugs": {
-    "url": "https://github.com/antfu/ext-name/issues"
-  },
-  "sponsor": {
-    "url": "https://github.com/sponsors/antfu"
+    "url": "https://github.com/Ni0duann/cc-code-ref/issues"
   },
   "categories": [
     "Other"
@@ -37,11 +33,38 @@
     "onStartupFinished"
   ],
   "contributes": {
-    "commands": [],
+    "commands": [
+      {
+        "command": "ccCodeRef.copyReference",
+        "title": "Copy Code Reference for Claude Code"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "ccCodeRef.copyReference",
+        "key": "alt+c",
+        "mac": "alt+c",
+        "when": "editorTextFocus"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "ccCodeRef.copyReference",
+          "group": "1_modification"
+        }
+      ]
+    },
     "configuration": {
       "type": "object",
-      "title": "ext-name",
-      "properties": {}
+      "title": "cc-code-ref",
+      "properties": {
+        "ccCodeRef.format": {
+          "type": "string",
+          "default": "@{file} {start}-{end}",
+          "description": "Output format. Placeholders: {file}, {start}, {end}, {selection}"
+        }
+      }
     }
   },
   "scripts": {

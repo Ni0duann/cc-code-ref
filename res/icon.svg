@@ -1,3 +1,38 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M26.6667 1.66667H24V7H8V9.66667H5.33333V20.3333H8V23H10.6667V28.3333H21.3333V25.6667H26.6667V23H21.3333V20.3333H26.6667V17.6667H21.3333V15H10.6667V20.3333H8V9.66667H24V7H26.6667V1.66667ZM18.6667 25.6667H13.3333V17.6667H18.6667V25.6667Z" fill="#888888"/>
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E87040"/>
+      <stop offset="100%" stop-color="#C75430"/>
+    </linearGradient>
+    <filter id="shadow" x="-4" y="-2" width="136" height="136" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <!-- Background -->
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+  <!-- Document -->
+  <g filter="url(#shadow)">
+    <path d="M32 24C32 20 35 16 40 16H72L96 40V104C96 108 93 112 88 112H40C35 112 32 108 32 104V24Z" fill="white" opacity="0.95"/>
+    <path d="M72 16L96 40H80C75 40 72 37 72 32V16Z" fill="white" opacity="0.6" stroke="white" stroke-width="1" stroke-linejoin="round"/>
+  </g>
+  <!-- Code lines with line numbers -->
+  <!-- Line 4 -->
+  <rect x="52" y="52" width="4" height="4" rx="1" fill="#C75430" opacity="0.5"/>
+  <rect x="60" y="52" width="28" height="4" rx="2" fill="#C75430" opacity="0.3"/>
+  <!-- Line 5 -->
+  <rect x="52" y="62" width="4" height="4" rx="1" fill="#C75430" opacity="0.5"/>
+  <rect x="60" y="62" width="20" height="4" rx="2" fill="#C75430" opacity="0.3"/>
+  <!-- Line 6 -->
+  <rect x="52" y="72" width="4" height="4" rx="1" fill="#C75430" opacity="0.5"/>
+  <rect x="60" y="72" width="24" height="4" rx="2" fill="#C75430" opacity="0.3"/>
+  <!-- Selection highlight (lines 5-6) -->
+  <rect x="48" y="59" width="44" height="20" rx="3" fill="#C75430" opacity="0.12"/>
+  <!-- Bracket accent -->
+  <path d="M42 48C40 48 38 50 38 52V72C38 74 38 76 40 78L42 80" stroke="#C75430" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6"/>
+  <!-- Copy indicator (clipboard overlay) -->
+  <g transform="translate(74, 74)">
+    <rect width="36" height="44" rx="6" fill="#C75430"/>
+    <rect x="12" y="-4" width="12" height="8" rx="3" fill="#C75430"/>
+    <path d="M10 18H26M10 26H22M10 34H18" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+  </g>
 </svg>

@@ -2,9 +2,7 @@ shellEmulator: true
 
 trustPolicy: no-downgrade
 
-packages:
-  - playground
-  - examples/*
+packages: []
 onlyBuiltDependencies:
   - '@vscode/vsce-sign'
   - esbuild
