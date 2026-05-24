@@ -1,8 +1,8 @@
 {
-  "publisher": "YOUR_PUBLISHER",
+  "publisher": "ni0duann",
   "name": "cc-code-ref",
   "displayName": "cc-code-ref",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "packageManager": "pnpm@10.27.0",
   "description": "Copy code references to clipboard for Claude Code in token-efficient format",
