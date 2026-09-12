@@ -33,6 +33,8 @@ The `@file start-end` format lets CC read files on demand — **only the file pa
 
 Search `ccCodeRef` in VS Code settings to customize.
 
+With no selection (cursor only), `{start}`/`{end}` point at the current line and `{selection}` expands to that line's text.
+
 ---
 
 ## 中文
@@ -66,6 +68,8 @@ Search `ccCodeRef` in VS Code settings to customize.
 | `ccCodeRef.format` | 输出格式，占位符：`{file}` `{start}` `{end}` `{selection}` | `@{file} {start}-{end}` |
 
 在 VS Code 设置中搜索 `ccCodeRef` 即可修改。
+
+没有选区（只有光标）时，`{start}`/`{end}` 指向当前行，`{selection}` 取当前行的内容。
 
 ## License
 
