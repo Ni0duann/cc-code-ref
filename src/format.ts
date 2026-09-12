@@ -5,9 +5,10 @@ export interface CodeRef {
   selection: string
 }
 
-export const DEFAULT_FORMAT = '@{file} {start}-{end}'
+export const DEFAULT_FORMAT = '{prefix}{file} {start}-{end}'
+export const DEFAULT_PREFIX = '@'
 
-const PLACEHOLDER = /\{(file|start|end|selection)\}/g
+const PLACEHOLDER = /\{(prefix|file|start|end|selection)\}/g
 
 /** Turns 0-based VS Code selection bounds into an inclusive 1-based line range. */
 export function lineRange(startLine: number, endLine: number, endCharacter: number) {
@@ -18,8 +19,18 @@ export function lineRange(startLine: number, endLine: number, endCharacter: numb
   }
 }
 
-export function formatReference(ref: CodeRef, format: string = DEFAULT_FORMAT): string {
+export function formatReference(
+  ref: CodeRef,
+  format: string = DEFAULT_FORMAT,
+  prefix: string = DEFAULT_PREFIX,
+): string {
+  const values: Record<string, string> = {
+    prefix,
+    file: ref.file,
+    start: String(ref.start),
+    end: String(ref.end),
+    selection: ref.selection,
+  }
   // A replacer function, so `$&` and friends inside the selection stay literal.
-  return format.replace(PLACEHOLDER, (placeholder, key: keyof CodeRef) =>
-    key === 'start' || key === 'end' ? String(ref[key]) : ref[key])
+  return format.replace(PLACEHOLDER, (_, key: string) => values[key])
 }

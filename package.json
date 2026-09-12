@@ -36,7 +36,23 @@
     "commands": [
       {
         "command": "ccCodeRef.copyReference",
-        "title": "Copy Code Reference for Claude Code"
+        "title": "Copy Code Reference for Claude Code",
+        "category": "cc-code-ref"
+      },
+      {
+        "command": "ccCodeRef.setFormat",
+        "title": "Set Copy Format…",
+        "category": "cc-code-ref"
+      },
+      {
+        "command": "ccCodeRef.setPrefix",
+        "title": "Set File Prefix…",
+        "category": "cc-code-ref"
+      },
+      {
+        "command": "ccCodeRef.resetConfig",
+        "title": "Reset Format to Default",
+        "category": "cc-code-ref"
       }
     ],
     "keybindings": [
@@ -61,8 +77,13 @@
       "properties": {
         "ccCodeRef.format": {
           "type": "string",
-          "default": "@{file} {start}-{end}",
-          "description": "Output format. Placeholders: {file}, {start}, {end}, {selection}"
+          "default": "{prefix}{file} {start}-{end}",
+          "description": "Output format. Placeholders: {prefix}, {file}, {start}, {end}, {selection}"
+        },
+        "ccCodeRef.prefix": {
+          "type": "string",
+          "default": "@",
+          "description": "Value substituted for the {prefix} placeholder. Leave empty for none."
         }
       }
     }

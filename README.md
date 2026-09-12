@@ -29,9 +29,15 @@ The `@file start-end` format lets CC read files on demand — **only the file pa
 
 | Setting | Description | Default |
 |---|---|---|
-| `ccCodeRef.format` | Output format. Placeholders: `{file}` `{start}` `{end}` `{selection}` | `@{file} {start}-{end}` |
+| `ccCodeRef.format` | Output format. Placeholders: `{prefix}` `{file}` `{start}` `{end}` `{selection}` | `{prefix}{file} {start}-{end}` |
+| `ccCodeRef.prefix` | Value substituted for `{prefix}`. Leave empty for none. | `@` |
 
-Search `ccCodeRef` in VS Code settings to customize.
+Changes apply immediately — no restart, no window reload.
+
+- **Command palette**: `cc-code-ref: Set Copy Format…` and `cc-code-ref: Set File Prefix…` open an input box with a live preview of the rendered reference; press `Enter`/OK to apply. `cc-code-ref: Reset Format to Default` restores both.
+- **Settings UI**: search `ccCodeRef`.
+
+The notification shown after each copy also carries a **Change Format…** button.
 
 With no selection (cursor only), `{start}`/`{end}` point at the current line and `{selection}` expands to that line's text.
 
@@ -65,9 +71,15 @@ With no selection (cursor only), `{start}`/`{end}` point at the current line and
 
 | 配置项 | 说明 | 默认值 |
 |---|---|---|
-| `ccCodeRef.format` | 输出格式，占位符：`{file}` `{start}` `{end}` `{selection}` | `@{file} {start}-{end}` |
+| `ccCodeRef.format` | 输出格式，占位符：`{prefix}` `{file}` `{start}` `{end}` `{selection}` | `{prefix}{file} {start}-{end}` |
+| `ccCodeRef.prefix` | `{prefix}` 的内容，留空则不加前缀 | `@` |
 
-在 VS Code 设置中搜索 `ccCodeRef` 即可修改。
+改完立即生效，不需要重启 VS Code，也不需要重载窗口。
+
+- **命令面板**：`cc-code-ref: Set Copy Format…` / `cc-code-ref: Set File Prefix…` 会弹出输入框，边输入边显示实时预览，按回车（确定）即写入并生效；`cc-code-ref: Reset Format to Default` 一键恢复默认。
+- **设置界面**：搜索 `ccCodeRef` 修改。
+
+每次复制后的通知里也带了一个 **Change Format…** 按钮，点它可以直接改格式。
 
 没有选区（只有光标）时，`{start}`/`{end}` 指向当前行，`{selection}` 取当前行的内容。
 

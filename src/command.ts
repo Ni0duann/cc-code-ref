@@ -1,7 +1,10 @@
-import type { CodeRef } from './format'
-import { env, window, workspace } from 'vscode'
-import { config } from './config'
-import { DEFAULT_FORMAT, formatReference, lineRange } from './format'
+import { env, window } from 'vscode'
+import { getSetting } from './config'
+import { formatReference } from './format'
+import { collectRefs } from './reference'
+import { setFormat } from './settings'
+
+const CHANGE_FORMAT = 'Change Format…'
 
 export async function copyReference() {
   const editor = window.activeTextEditor
@@ -10,19 +13,12 @@ export async function copyReference() {
     return
   }
 
-  const { document } = editor
-  const file = workspace.asRelativePath(document.uri)
-  const refs: CodeRef[] = editor.selections.map((sel) => {
-    return {
-      file,
-      ...lineRange(sel.start.line, sel.end.line, sel.end.character),
-      selection: sel.isEmpty ? document.lineAt(sel.start.line).text : document.getText(sel),
-    }
-  })
-
-  const format = config.get('ccCodeRef.format', DEFAULT_FORMAT)
-  const text = refs.map(ref => formatReference(ref, format)).join(' ')
+  const format = getSetting('ccCodeRef.format')
+  const prefix = getSetting('ccCodeRef.prefix')
+  const text = collectRefs(editor).map(ref => formatReference(ref, format, prefix)).join(' ')
 
   await env.clipboard.writeText(text)
-  window.showInformationMessage(`Copied: ${text}`)
+  const action = await window.showInformationMessage(`Copied: ${text}`, CHANGE_FORMAT)
+  if (action === CHANGE_FORMAT)
+    await setFormat()
 }

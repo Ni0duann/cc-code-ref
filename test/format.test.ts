@@ -1,6 +1,6 @@
 import type { CodeRef } from '../src/format'
 import { describe, expect, it } from 'vitest'
-import { DEFAULT_FORMAT, formatReference, lineRange } from '../src/format'
+import { DEFAULT_FORMAT, DEFAULT_PREFIX, formatReference, lineRange } from '../src/format'
 
 const ref: CodeRef = {
   file: 'src/utils.ts',
@@ -11,7 +11,8 @@ const ref: CodeRef = {
 
 describe('formatReference', () => {
   it('renders the default format', () => {
-    expect(DEFAULT_FORMAT).toBe('@{file} {start}-{end}')
+    expect(DEFAULT_FORMAT).toBe('{prefix}{file} {start}-{end}')
+    expect(DEFAULT_PREFIX).toBe('@')
     expect(formatReference(ref)).toBe('@src/utils.ts 15-32')
   })
 
@@ -40,6 +41,25 @@ describe('formatReference', () => {
   it('supports an empty selection', () => {
     expect(formatReference({ ...ref, selection: '' }, '{file}:{start}-{end} {selection}'))
       .toBe('src/utils.ts:15-32 ')
+  })
+})
+
+describe('{prefix}', () => {
+  it('substitutes a custom prefix', () => {
+    expect(formatReference(ref, DEFAULT_FORMAT, '#')).toBe('#src/utils.ts 15-32')
+    expect(formatReference(ref, '{prefix}{file}:{start}', '> ')).toBe('> src/utils.ts:15')
+  })
+
+  it('drops the symbol when the prefix is empty', () => {
+    expect(formatReference(ref, DEFAULT_FORMAT, '')).toBe('src/utils.ts 15-32')
+  })
+
+  it('replaces every occurrence of {prefix}', () => {
+    expect(formatReference(ref, '{prefix}{file}{prefix}', '@')).toBe('@src/utils.ts@')
+  })
+
+  it('is ignored by formats that do not use it', () => {
+    expect(formatReference(ref, '@{file} {start}-{end}', '#')).toBe('@src/utils.ts 15-32')
   })
 })
 
